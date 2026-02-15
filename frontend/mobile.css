@@ -1,0 +1,138 @@
+/* --- Mobile / Responsiveness Adjustments --- */
+
+/* Tablet & Mobile Devices */
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .carousel-item {
+        width: 220px;
+        height: 320px;
+        margin-left: -110px;
+        margin-top: -160px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .highlight-name {
+        font-size: 2.2rem;
+    }
+    
+    .bio-section, .stats-section {
+        width: 95vw;
+        max-width: 95vw;
+        margin: 20px auto;
+        padding: 15px;
+    }
+}
+
+/* Phones specifically */
+@media (max-width: 600px) {
+    /* Intro Screen */
+    .intro-content {
+        width: 90%;
+        text-align: center;
+    }
+
+    .glitch {
+        font-size: 1.8rem; /* Smaller greeting */
+    }
+
+    .loader-bar {
+        width: 80%;
+    }
+
+    /* Sound Button */
+    .sound-toggle {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        margin-bottom: 20px;
+        white-space: nowrap;
+    }
+
+    /* Hero Section */
+    .neon-border {
+        padding: 15px;
+        width: 95%;
+    }
+    
+    .main-title {
+        font-size: 1.5rem;
+    }
+    
+    .highlight-name {
+        font-size: 1.8rem;
+    }
+    
+    .subtext {
+        font-size: 0.9rem;
+    }
+
+    /* Bio & Stats */
+    .bio-content {
+        font-size: 0.95rem;
+        padding: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Carousel Scaling */
+    .carousel-container {
+        height: 400px;
+    }
+    
+    .carousel-item {
+        width: 180px;
+        height: 260px;
+        margin-left: -90px;
+        margin-top: -130px;
+    }
+
+    /* Cake Scaling */
+    .cake-container {
+        transform: scale(0.7);
+        transform-origin: center bottom;
+        margin-bottom: -40px; /* pull text closer */
+    }
+
+    /* Future Button */
+    .mega-btn {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        width: 90%;
+    }
+
+    /* Ticker */
+    .market-ticker-wrap {
+        height: 30px;
+    }
+    .ticker-item {
+        font-size: 0.8rem;
+        margin-right: 20px;
+    }
+
+    /* Achievements */
+    .achievement-popup {
+        width: 90%;
+        right: 5%;
+        bottom: 50px;
+        padding: 8px 15px;
+    }
+    .achievement-icon {
+        font-size: 1.5rem;
+    }
+    .ach-desc {
+        font-size: 0.85rem;
+    }
+
+    /* Floating Icons - Reduce Clutter */
+    .floating-icons i:nth-child(even) {
+        display: none;
+    }
+}
