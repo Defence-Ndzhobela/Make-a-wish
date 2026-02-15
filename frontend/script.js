@@ -246,6 +246,26 @@ function playAchievementSound() {
 
 // --- Auto Scroll / Presentation Mode ---
 function startAutoScrollSequence() {
+    const isMobileLayout = window.matchMedia('(max-width: 900px)').matches;
+
+    const scrollToTarget = (targetElement, targetName) => {
+        if (targetName === 'header') {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            return;
+        }
+
+        if (!targetElement) return;
+
+        if (isMobileLayout) {
+            const targetTop = targetElement.offsetTop - 12;
+            window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+        } else {
+            const offsetLeft = targetElement.offsetLeft;
+            const scrollLeft = offsetLeft - (window.innerWidth / 2) + (targetElement.clientWidth / 2);
+            window.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+    };
+
     // Total duration approx 30 seconds to cover all sections
     const totalDuration = 30000; 
     
@@ -284,14 +304,7 @@ function startAutoScrollSequence() {
         setTimeout(() => {
             const element = event.target ? document.querySelector(event.target) : null;
             if (element) {
-                // Ensure element exists before scrolling
-                if(event.target !== 'header') { 
-                    const offsetLeft = element.offsetLeft;
-                    const scrollLeft = offsetLeft - (window.innerWidth / 2) + (element.clientWidth / 2);
-                    window.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-                } else {
-                     window.scrollTo({ left: 0, behavior: 'smooth' });
-                }
+                scrollToTarget(element, event.target);
             } // Element check end (some events are just audio)
                 
             // --- Action Handlers ---
@@ -323,10 +336,8 @@ function startAutoScrollSequence() {
                     const flame = document.getElementById('main-flame');
                     if (flame && !flame.classList.contains('blown-out')) {
                         flame.click(); 
-                        if(element) {
-                            const offsetLeft = element.offsetLeft;
-                            const scrollLeft = offsetLeft - (window.innerWidth / 2) + (element.clientWidth / 2);
-                            window.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                        if (element) {
+                            scrollToTarget(element, event.target);
                         }
                     }
                 }, 1500); 
