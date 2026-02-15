@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Defence "Pips" Munehisa</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Tech/Cyber look -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Loading Screen / Intro -->
+    <div id="intro-screen">
+        <div class="intro-content">
+            <h1 class="glitch" data-text="INITIALIZING...">INITIALIZING...</h1>
+            <div class="loader-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="countdown-timer" id="countdown">Loading System Modules...</div>
+        </div>
+    </div>
+
+    <!-- Cyber Scanline Overlay -->
+    <div class="scanline"></div>
+
+    <!-- Background Elements -->
+    <canvas id="particles-canvas"></canvas>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="floating-icons">
+        <i class="fas fa-code"></i>
+        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-chart-line"></i>
+        <i class="fas fa-dollar-sign"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-rocket"></i>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Header Section -->
+        <header class="hero-section">
+            <div class="neon-border">
+                <h1 class="main-title">🎉 HAPPY BIRTHDAY <br> <span class="highlight-name">DEFENCE "PIPS" MUNEHISA</span> 🎉</h1>
+                <p class="subtext">Future Tech Entrepreneur • Forex Strategist • Cyber Mind • Software Builder</p>
+            </div>
+        </header>
+
+        <!-- Dynamic Typing Bio Section -->
+        <section class="bio-section glass-panel">
+            <div class="terminal-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="terminal-title">user_profile.exe</span>
+            </div>
+            <div class="bio-content">
+                <p id="typing-text"></p>
+                <div class="cursor">|</div>
+            </div>
+        </section>
+
+        <!-- Stats Dashboard Section -->
+        <section class="stats-section glass-panel">
+            <h2 class="section-title" style="margin-bottom:20px; font-size: 1.8rem;">Core Attributes <span class="neon-blue">Level Analysis</span></h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Coding Skill <span class="stat-val">87%</span></div>
+                    <div class="stat-bar"><div class="stat-fill blue" data-width="87%"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Market Analysis (Forex) <span class="stat-val">92%</span></div>
+                    <div class="stat-bar"><div class="stat-fill gold" data-width="92%"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Ambition & Drive <span class="stat-val">100%</span></div>
+                    <div class="stat-bar"><div class="stat-fill purple" data-width="100%"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Creativity <span class="stat-val">85%</span></div>
+                    <div class="stat-bar"><div class="stat-fill green" data-width="85%"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Image Carousel -->
+        <section class="gallery-section">
+            <h2 class="section-title">Analysis: <span class="neon-blue">Legendary Moments</span></h2>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <!-- Images will be injected by JS -->
+                </div>
+                <div class="carousel-controls">
+                    <button id="prevBtn" class="cyber-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button id="nextBtn" class="cyber-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Cake Section -->
+        <section class="cake-section">
+            <h2 class="section-title">System Status: <span class="neon-gold">Celebration Mode</span></h2>
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-top"></div>
+                    <div class="icing"></div>
+                    <div class="candle" id="main-candle">
+                        <div class="flame" id="main-flame"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="instruction-text" style="margin-top: 40px;">Click the flame to make a wish!</p>
+        </section>
+
+        <!-- Future Reveal Section -->
+        <section class="future-section">
+            <button id="future-btn" class="mega-btn">
+                <span class="btn-content">Click to Reveal Your Future</span>
+                <span class="btn-glitch"></span>
+            </button>
+            <div id="future-result" class="hidden">
+                <h2 class="success-msg">ACCESS GRANTED</h2>
+                <div class="loading-bar-container">
+                    <div class="loading-label">Millionaire Mindset Loading...</div>
+                    <div class="future-progress-bar"><div class="future-progress-fill"></div></div>
+                    <div class="percentage">0%</div>
+                </div>
+                <p class="final-msg hidden">🚀 SYSTEM 100% COMPLETE. <br> DESTINATION: SUCCESS.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="achievement-container"></div>
+    
+    <!-- Market Ticker -->
+    <div class="market-ticker-wrap">
+        <div class="market-ticker">
+            <div class="ticker-item"><span class="ticker-symbol">$PIPS</span> <span class="ticker-up">▲ 1000%</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$SKILL</span> <span class="ticker-up">▲ 500%</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$PLANS</span> <span class="ticker-up">🚀 MOON</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$SUCCESS</span> <span class="ticker-up">▲ BULLISH</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$CAKE</span> <span class="ticker-neutral">● BUY NOW</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$FOREX</span> <span class="ticker-up">▲ PROFIT</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$CYBER</span> <span class="ticker-up">▲ SECURE</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">MARKET STATUS:</span> <span class="ticker-gold">BIRTHDAY CELEBRATION</span></div>
+             <!-- Duplicate for continuous loop illusion if needed, or CSS handles it. Adding a few repeats helps keyframes -->
+            <div class="ticker-item"><span class="ticker-symbol">$PIPS</span> <span class="ticker-up">▲ 1000%</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$SKILL</span> <span class="ticker-up">▲ 500%</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$PLANS</span> <span class="ticker-up">🚀 MOON</span></div>
+            <div class="ticker-item"><span class="ticker-symbol">$SUCCESS</span> <span class="ticker-up">▲ BULLISH</span></div>
+        </div>
+    </div>
+
+    <!-- UI Overlay Elements -->
+    <div class="digital-clock" id="digital-clock">00:00:00</div>
+    <audio id="party-sound" preload="auto"></audio> <!-- Placeholder for sound logic -->
+
+    <canvas id="fireworks-canvas"></canvas>
+    <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;pointer-events:none;z-index:1999;"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
