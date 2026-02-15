@@ -755,19 +755,6 @@ body {
 }
 
 /* --- Utilities --- */
-#digital-clock {
-    position: fixed;
-    bottom: 50px; /* Move up slightly due to ticker */
-    right: 20px;
-    font-family: var(--font-mono);
-    font-size: 1.5rem;
-    color: var(--neon-blue);
-    background: rgba(0,0,0,0.8);
-    padding: 10px;
-    border: 1px solid var(--neon-blue);
-    border-radius: 5px;
-    z-index: 100;
-}
 
 #fireworks-canvas {
     position: fixed;

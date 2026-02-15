@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { once: true });
 
     initLoader();
-    initClock();
     initParticles();
     createFloatingIcons();
 });
@@ -824,13 +823,6 @@ function animateConfetti() {
 }
 
 // --- Utils ---
-function initClock() {
-    setInterval(() => {
-        const now = new Date();
-        document.getElementById('digital-clock').innerText = now.toLocaleTimeString();
-    }, 1000);
-}
-
 function initParticles() {
     const bgCanvas = document.getElementById('particles-canvas');
     if(!bgCanvas) return;
