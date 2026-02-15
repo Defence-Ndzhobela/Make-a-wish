@@ -20,13 +20,16 @@ const bioKeywords = {
 
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Attempt audio immediately (might be blocked by browser policy)
-    startAIVoice();
+    window.voiceStarted = false;
+    initSoundToggle();
+    updateSoundToggle();
+
+    // Attempt audio immediately and keep retrying without requiring click
+    startAIVoiceWithRetry(20, 1000);
     
     // Fallback: Add a one-time click listener to whole document to ensure audio starts if blocked
      document.body.addEventListener('click', () => {
-        if(!window.voiceStarted) {
-            window.voiceStarted = true;
+        if (!window.voiceStarted) {
             startAIVoice();
             // playSynthBirthday();
         }
@@ -37,6 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     createFloatingIcons();
 });
+
+function initSoundToggle() {
+    const soundToggle = document.getElementById('sound-toggle');
+    if (!soundToggle) return;
+
+    soundToggle.addEventListener('click', () => {
+        startAIVoiceWithRetry(12, 700);
+    });
+}
+
+function updateSoundToggle() {
+    const soundToggle = document.getElementById('sound-toggle');
+    if (!soundToggle) return;
+
+    if (window.voiceStarted) {
+        soundToggle.classList.add('hidden-sound');
+    } else {
+        soundToggle.classList.remove('hidden-sound');
+    }
+}
 
 // --- Loader System ---
 function initLoader() {
@@ -56,8 +79,11 @@ function initLoader() {
             countdown.style.cursor = "pointer";
             countdown.style.textShadow = "0 0 10px #0f0";
             
-            // Wait for user interaction to bypass browser autoplay policies
+            // Auto start, while still allowing manual click fallback
+            let hasStarted = false;
             const startHandler = () => {
+                if (hasStarted) return;
+                hasStarted = true;
                 document.removeEventListener('click', startHandler);
                 screen.style.opacity = '0';
                 setTimeout(() => {
@@ -67,6 +93,7 @@ function initLoader() {
             };
             
             document.addEventListener('click', startHandler);
+            setTimeout(startHandler, 500);
         } else {
             countdown.innerText = `Loading System Modules... ${Math.floor(width)}%`;
         }
@@ -74,7 +101,7 @@ function initLoader() {
 }
 
 function startMainExperience() {
-    startAIVoice(); // "Jarvis" Voice
+    startAIVoiceWithRetry(); // "Jarvis" Voice
     triggerConfetti();
     initTyping();
     initStats();
@@ -87,6 +114,29 @@ function startMainExperience() {
     setInterval(() => {
         createFloatingStickers();
     }, 4000);
+}
+
+function startAIVoiceWithRetry(maxAttempts = 6, retryDelay = 700) {
+    if (!('speechSynthesis' in window)) return;
+
+    let attempts = 0;
+
+    const trySpeak = () => {
+        if (window.voiceStarted) return;
+        attempts += 1;
+        startAIVoice();
+
+        setTimeout(() => {
+            if (window.voiceStarted) return;
+            const isSpeaking = window.speechSynthesis.speaking || window.speechSynthesis.pending;
+            if (!isSpeaking && attempts < maxAttempts) {
+                trySpeak();
+            }
+            updateSoundToggle();
+        }, retryDelay);
+    };
+
+    trySpeak();
 }
 
 // --- AI Voice (Web Speech API) ---
@@ -105,14 +155,23 @@ function speakText(text) {
 }
 
 function startAIVoice() {
-    window.speechSynthesis.cancel(); // Clear any existing speech
+    if (window.voiceStarted) return;
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.resume();
+
     if ('speechSynthesis' in window) {
         // Ensure voice load (Chrome sometimes needs explicit getVoices)
         let voices = window.speechSynthesis.getVoices();
         
         const speakIntro = () => {
+            if (window.voiceStarted) return;
             const msg = new SpeechSynthesisUtterance();
             msg.text = "Welcome, Agent Pips. System initialized. Initiating Birthday Celebration Protocol. All systems nominal. Accessing future trajectory. Stand by.";
+            msg.onstart = () => {
+                window.voiceStarted = true;
+                updateSoundToggle();
+            };
             
             // Re-fetch voices inside execution to be sure
             const currentVoices = window.speechSynthesis.getVoices();
