@@ -95,15 +95,15 @@ body {
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    border: 1px solid var(--neon-gold);
+    border: 1px solid #ff5f56;
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.82);
-    color: var(--neon-gold);
+    color: #ff5f56;
     font-family: var(--font-mono);
     font-size: 0.85rem;
     letter-spacing: 0.8px;
     cursor: pointer;
-    box-shadow: 0 0 12px var(--neon-gold);
+    box-shadow: 0 0 12px #ff5f56;
     animation: soundPulse 1.2s ease-in-out infinite;
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
@@ -124,10 +124,10 @@ body {
 
 @keyframes soundPulse {
     0%, 100% {
-        box-shadow: 0 0 10px var(--neon-gold);
+        box-shadow: 0 0 10px #ff5f56;
     }
     50% {
-        box-shadow: 0 0 20px var(--neon-gold);
+        box-shadow: 0 0 20px #ff5f56;
     }
 }
 

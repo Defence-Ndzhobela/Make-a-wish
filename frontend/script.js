@@ -21,6 +21,7 @@ const bioKeywords = {
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
     window.voiceStarted = false;
+    window.soundPromptDismissed = false;
     initSoundToggle();
     updateSoundToggle();
 
@@ -45,19 +46,32 @@ function initSoundToggle() {
     if (!soundToggle) return;
 
     soundToggle.addEventListener('click', () => {
+        dismissSoundToggle();
         startAIVoiceWithRetry(12, 700);
     });
+
+    const dismissOnTouch = () => {
+        dismissSoundToggle();
+    };
+
+    document.addEventListener('touchstart', dismissOnTouch, { once: true, passive: true });
+    document.addEventListener('click', dismissOnTouch, { once: true });
 }
 
 function updateSoundToggle() {
     const soundToggle = document.getElementById('sound-toggle');
     if (!soundToggle) return;
 
-    if (window.voiceStarted) {
+    if (window.voiceStarted || window.soundPromptDismissed) {
         soundToggle.classList.add('hidden-sound');
     } else {
         soundToggle.classList.remove('hidden-sound');
     }
+}
+
+function dismissSoundToggle() {
+    window.soundPromptDismissed = true;
+    updateSoundToggle();
 }
 
 // --- Loader System ---
