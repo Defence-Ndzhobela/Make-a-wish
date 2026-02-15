@@ -86,13 +86,15 @@ body {
 }
 
 .sound-toggle {
-    position: relative;
+    position: fixed;
+    left: 50%;
+    bottom: 52px;
+    transform: translateX(-50%);
     z-index: 10002;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    margin-bottom: 16px;
     border: 1px solid var(--neon-gold);
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.82);
@@ -111,13 +113,13 @@ body {
 }
 
 .sound-toggle:hover {
-    transform: translateY(-2px);
+    transform: translateX(-50%) translateY(-2px);
 }
 
 .sound-toggle.hidden-sound {
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-8px);
+    transform: translateX(-50%) translateY(8px);
 }
 
 @keyframes soundPulse {

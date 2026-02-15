@@ -131,7 +131,9 @@
     }
 
     .sound-toggle {
-        max-width: 100%;
+        width: calc(100% - 20px);
+        max-width: 420px;
+        bottom: 44px;
         white-space: normal;
         text-align: center;
         justify-content: center;
